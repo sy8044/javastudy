@@ -53,3 +53,17 @@ JVM이 a computer inside a computer 즉 컴퓨터 내부에 있는 하나의 컴
 interperter는 바이트코드를 명령어 단위로 읽어서 실행한다. 파이썬이 대표적인 인터프리터 언어이고 인터프리터 방식은 한 줄씩 읽기에 속도가 느리다
 따라서 JIT컴파일러가 등장을 하였고 JIT컴파일러가 컴파일하는 시간이 인터프리팅하는 시간보다 기므로 특정 메소드들이 일정 횟수를 넘어가면 JIT컴파일러에서 컴파일을 해준다
 <br/><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FNRdcI%2FbtqQee8MSOa%2Fg0BkKjZ6hoQ4fv7obHVwm0%2Fimg.png"></img><br/>
+다음 명령어가 실횡될 주소를 가지고 있는 PC레지스터, 메소드를 빠져나가면 소멸되는 데이터를 저장하기 위해 사용되는 JVM stack
+native method stack에서는 실제 실행할 수 있는 기계어로 작성된 프로그램을 실행시키는 영역이다
+<br/><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FUmvqI%2FbtqP12u6HDs%2FiIVNG8q95U0299Dq0vRHOk%2Fimg.png"></img><br/>
+힙은 다음과같이 3가지로 구성되어 있는데
+permanent generation은 생성된 객체들의 주소값이 저장된다
+new/young generation의 eden영역은 객체들이 최초로 생성되는 공간이고 이곳이 가득차게 된다면 첫 번째GC(minor GC)가 발생한다
+이 minor GC가 일어나면 eden영역에 있던 객체들 중 살아남은 객체들은 survivor 영역에 복사가 되고 나머지 영역의 객체들은 삭제된다
+Tenured Generation은 New Generation에서 일정 시간 참조되며 살아있는 객체들이 저장되는 공간이다. 
+즉 minor GC를 일정 횟수 이상 버틴 객체들이 이동하는 곳이다
+
+method area는 클래스 정보를 처음 메모리 공간에 올릴 때 초기화되는 대상을 저장하기 위한 메모리 공간이다.
+method area가 클래스 데이터를 위한 공간이라면 heap은 객체를 위한 공간이다
+
+## JDK와 JRE의 차이
