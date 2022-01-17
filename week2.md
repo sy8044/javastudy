@@ -45,3 +45,39 @@ int a; // 타입 + 변수이름
 int a = 10;
 ```
 다음과 같이 값을 직접 지정하는 것을 명시적 초기화라 한다
+
+## 변수의 스코프와 라이프타임
+로컬 변수는 변수가 정의된 메소드 혹은 코드블락에서만 사용될 수 있다
+```java
+void method() { // A method definition
+  int i = 0; // Declare variable i
+  while (i < 10) { // i is in scope here
+    int j = 0; // Declare j; the scope of j begins here
+    i++; // i is in scope here; increment it
+  } // j is no longer in scope;
+  System.out.println(i); // i is still in scope here
+} // The scope of i ends here
+```
+스코프 바깥에서 로컬변수는 접근될 수 없다.
+흔히 lexical scoping이라 불리는 방식으로 { } 사이에 정의된 로컬 변수들은 { } 사이에서만 사용된다
+람다 표현식의 경우 독특하게 lexical scoping에 적용되지 않고 captured variable이라 불리는 변수들이 생겨서 { } 밖에서도 접근이 가능하다
+
+## 타입 변환, 캐스팅 그리고 타입 프로모션
+primitive type간에 타입 변환은 가능하다
+크기가 작은 type에서 크기가 큰 type으로는 손실 없이 변환되나 크키가 큰 type에서 크기가 작은 type으로의 변환은 손실이 발생할 수 있다
+reference type간에 타입 변환은 상속이 되었을 때만 가능하다
+캐스팅이란 명시적으로 타입 변환을 해주는 것이다
+
+## 1차 및 2차 배열 선언하기
+```
+int[] onedim;
+int[][] twodim;
+```
+
+## 타입 추론, var
+타입 추론이란 변수의 타입을 명시적으로 적지 않아도, 컴파일러가 타입을 추론하는 것을 말한다
+var을 사용하게 되면 컴파일러가 초기화 된 리터럴을 바탕으로 타입을 추론한다
+```
+var tt = "hi" // var -> string
+```
+var은 반드시 초기화를 하여 사용해야 한다. 단순히 선언만 하는것으로는 작동하지 않는다
