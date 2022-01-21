@@ -28,7 +28,7 @@ ex) ~12 : 00001100 -> 11110011
 3. | : 각자 비트에 대해 boolean or
 4. ^ : 각자 비트에 대해 boolean xor 같으면 0 다르면 1
 5. << : left shift 숫자 * 2, 왼쪽으로 1칸씩 이동
-6. >> : signed right shift 숫자 / 2, 오른쪽으로 1칸씩 이동 
+6. '>>' : signed right shift 숫자 / 2, 오른쪽으로 1칸씩 이동 
 
 ## 관계 연산자
 
