@@ -60,10 +60,83 @@ left operand : object or array value, right operand : name of a reference type
 <br/> (paramlist) -> {statenebts}
 
 ## 3항 연산자
+( 조건문 ) ? 참 : 거짓 
 
 ## 연산자 우선 순위
 
 ## java 13 switch 연산자
+자바 13 의 switch문에서는 기존의 case, break문을 case -> 문으로 작성할 수 있다
+<br/> 또한 break대신 yield가 사용된다
+```
+public enum Day { SUNDAY, MONDAY, TUESDAY,
+    WEDNESDAY, THURSDAY, FRIDAY, SATURDAY; }
 
+// ... 변수 선언 + 변수 할당
+
+    int numLetters = 0;
+    Day day = Day.WEDNESDAY;
+    switch (day) {
+        case MONDAY:
+        case FRIDAY:
+        case SUNDAY:
+            numLetters = 6;
+            break;
+        case TUESDAY:
+            numLetters = 7;
+            break;
+        case THURSDAY:
+        case SATURDAY:
+            numLetters = 8;
+            break;
+        case WEDNESDAY:
+            numLetters = 9;
+            break;
+        default:
+            throw new IllegalStateException("Invalid day: " + day);
+    }
+    System.out.println(numLetters);
+```
+```
+    Day day = Day.WEDNESDAY;    
+    System.out.println(
+        switch (day) {
+            case MONDAY, FRIDAY, SUNDAY -> 6;
+            case TUESDAY                -> 7;
+            case THURSDAY, SATURDAY     -> 8;
+            case WEDNESDAY              -> 9;
+            default -> throw new IllegalStateException("Invalid day: " + day);
+        }
+    );    
+```
+``` 
+// yield를 통해 선언과 할당을 한번에
+    Day day = Day.WEDNESDAY;
+    int numLetters = switch (day) {
+        case MONDAY:
+        case FRIDAY:
+        case SUNDAY:
+            System.out.println(6);
+            yield 6;
+        case TUESDAY:
+            System.out.println(7);
+            yield 7;
+        case THURSDAY:
+        case SATURDAY:
+            System.out.println(8);
+            yield 8;
+        case WEDNESDAY:
+            System.out.println(9);
+            yield 9;
+        default:
+            throw new IllegalStateException("Invalid day: " + day);
+    };
+    System.out.println(numLetters);
+ ```
+ yield를 사용하게 switch문 자체에서 return이 가능해진다
+ <br/> 기존의 break문을 사용하는 경우에는 먼저 변수를 설정하고 값을 할당하고 break를 해야했지만
+ <br/> yield를 사용하게 되면 간단하게 처리를 할 수 있다
+ 
 ## side effects
-p.45
+일부 연산자들은 계산을 하게 되면 기존과 다른 결과를 가지게 되는 상태 변화를 일으킨다.
+<br/> 이것을 side effect를 가지고 있다고 표현한다
+<br/> 예를 들자면 ++ 연산자의 경우 ++a와 같이 사용되면 기존 a 의 값에 1을 더한 값을 가지게 된다
