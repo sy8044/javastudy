@@ -31,3 +31,8 @@ public class SimpleCalculator {
 <br/> 2번째 parameter가 테스트케이스가 들어가게 된다
 <img src="../img/junitpass.JPG"></img><br/>
 <img src="../img/junitfail.JPG"></img><br/>
+
+
+## Run test with coverage
+run coverage를 하게 되면 테스트 케이스들이 클래스 혹은 메소드의 어느 부분까지 테스트를 했는지 출력을 해준다
+<br/> 또한 라인 숫자 옆을 보게 되면 초록색, 붉은색으로 테스트 케이스로 커버가 된 부분들을 
